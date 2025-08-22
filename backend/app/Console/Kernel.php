@@ -23,12 +23,27 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // 每分鐘執行排程
+        // 每分鐘執行爬蟲
         $schedule->call(function () {
             Log::info('Scheduler triggered at ' . now());
 
-            exec('docker-compose run --rm crawler');
-        })->everyMinute();
+            // 執行 docker-compose run crawler
+            $output = [];
+            $returnVar = null;
+
+            exec('docker-compose run --rm crawler 2>&1', $output, $returnVar);
+
+            // 檢查執行結果
+            if ($returnVar !== 0) {
+                Log::error('Crawler failed at ' . now() . ' with exit code ' . $returnVar);
+                Log::error('Crawler output: ' . implode("\n", $output));
+            } else {
+                Log::info('Crawler succeeded at ' . now());
+                Log::info('Crawler output: ' . implode("\n", $output));
+            }
+        })->everyMinute()
+        ->withoutOverlapping()
+        ->evenInMaintenanceMode();
     }
 
     /**
