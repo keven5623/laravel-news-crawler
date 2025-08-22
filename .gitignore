@@ -1,7 +1,15 @@
-/vendor
-/node_modules
-/.env
-/storage/*.key
-/public/hot
-/public/storage
-/.idea
+# Laravel & PHP
+/backend/vendor
+/backend/node_modules
+/backend/.env
+/backend/storage/*.key
+/backend/storage/debugbar
+/backend/storage/framework/cache/*
+/backend/storage/framework/sessions/*
+/backend/storage/framework/views/*
+/backend/storage/logs/*
+/backend/public/hot
+/backend/public/storage
+
+# Python crawler
+/crawler/__pycache__/
