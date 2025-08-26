@@ -1,1 +1,5 @@
-* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1
+# 設定 PATH，讓 cron 找到指令
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# 每分鐘執行 Laravel schedule，指定 root 使用者
+* * * * * root cd /var/www && /usr/local/bin/php artisan schedule:run >> /var/log/cron.log 2>&1

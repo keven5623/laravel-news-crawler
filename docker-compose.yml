@@ -30,6 +30,7 @@ services:
       DB_PASSWORD: password
     volumes:
       - ./backend:/var/www
+      - ./crawler:/var/www/crawler   # <- 掛載 crawler
     working_dir: /var/www
     command: ["sh", "-c", "php artisan migrate --force && cron && php-fpm"]
 

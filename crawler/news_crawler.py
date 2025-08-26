@@ -5,15 +5,19 @@ import psycopg2
 from datetime import datetime
 
 
-DB_HOST = "db" if os.environ.get("DOCKER") else "localhost"
+DB_HOST = os.environ.get("DB_HOST", "localhost")
+DB_PORT = int(os.environ.get("DB_PORT", 5432))
+DB_NAME = os.environ.get("DB_NAME", "laravel_db")
+DB_USER = os.environ.get("DB_USER", "postgres")
+DB_PASSWORD = os.environ.get("DB_PASSWORD", "password")
 
 # PostgreSQL 連線
 conn = psycopg2.connect(
     host=DB_HOST,
-    dbname="laravel_db",
-    user="postgres",
-    password="password",
-    port=5432
+    port=DB_PORT,
+    dbname=DB_NAME,
+    user=DB_USER,
+    password=DB_PASSWORD
 )
 
 cur = conn.cursor()
