@@ -1,10 +1,10 @@
-# Laravel + Python News Crawler
+# Laravel + Python RSS News Crawler
 
 本專案示範如何使用 **Laravel 排程**觸發 **Python 爬蟲**，抓取新聞資訊並寫入 **PostgreSQL**，並在 **Blade 頁面**顯示新聞列表。
 
 backend 容器：Laravel + Scheduler
 
-crawler 容器：Python 爬蟲
+crawler 容器：Python RSS 爬蟲
 
 db 容器：PostgreSQL
 
@@ -29,7 +29,7 @@ project-root/
 
 ## 功能
 
-- 使用 Python + BeautifulSoup 抓取新聞網站文章 (`article` 標籤)  
+- 使用 Python + feedparser 抓取新聞 RSS Feed  
 - 存入 PostgreSQL 資料庫  
 - Laravel Scheduler 定時觸發爬蟲  
 - Blade 頁面顯示最新新聞列表  
